@@ -1,0 +1,23 @@
+{
+	"name": "vivait/voter",
+	"description": "A group of classes that provides the structure for executing a number of conditions and voting on their output",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Lewis Wright",
+			"email": "lewis@vivait.co.uk"
+		}
+	],
+	"minimum-stability": "stable",
+	"require": {
+		"php": ">=5.3"
+	},
+	"require-dev": {
+		"phpspec/phpspec": "*"
+	},
+	"autoload": {
+        "psr-0": {
+            "Vivait\\Voter\\": "src/"
+        }
+	}
+}
