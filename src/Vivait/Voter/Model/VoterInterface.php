@@ -9,7 +9,7 @@ interface VoterInterface {
     /**
      * @param array $conditions
      */
-    function __construct(array $conditions = array());
+    public function __construct(array $conditions = array());
 
     /**
      * @param $entities

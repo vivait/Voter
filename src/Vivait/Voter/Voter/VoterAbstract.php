@@ -12,7 +12,7 @@ abstract class VoterAbstract implements VoterInterface {
      */
     protected $conditions;
 
-    function __construct(array $conditions = array())
+    public function __construct(array $conditions = array())
     {
         $this->conditions = new \SplObjectStorage();
         $this->addConditions($conditions);
