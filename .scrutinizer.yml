@@ -11,4 +11,4 @@ tools:
     custom_commands:
         -
             scope: file
-            command: bin/phpspec %pathname%
+            command: vendor/phpspec/bin/phpspec %pathname%
