@@ -8,13 +8,12 @@
 			"email": "lewis@vivait.co.uk"
 		}
 	],
-	"minimum-stability": "stable",
 	"require": {
 		"php": ">=5.3"
 	},
 	"require-dev": {
-		"phpspec/phpspec": "*",
-        "vivait/scrutinizer-formatter": "*"
+		"phpspec/phpspec": "dev-master",
+        "vivait/scrutinizer-formatter": "dev-master"
     },
 	"autoload": {
         "psr-0": {
