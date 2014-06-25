@@ -1,11 +1,5 @@
 imports:
     - php
 
-tools:
-  php_code_sniffer:
-    filter:
-      excluded-paths: [ spec/*, vendor/* ]
-
-  php_analyzer:
-    filter:
+filter:
       excluded-paths: [ spec/*, vendor/* ]
