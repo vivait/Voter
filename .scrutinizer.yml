@@ -1,5 +1,14 @@
+before_commands:
+    - "composer install --prefer-source"
+
 imports:
     - php
 
 filter:
       excluded-paths: [ spec/*, vendor/* ]
+
+tools:
+    custom_commands:
+        -
+            scope: file
+            command: bin/phpspec %pathname%
