@@ -1,8 +1,8 @@
 <?php
 
-namespace Vivait\Voter;
+namespace Vivait\Voter\Voter;
 
-use Vivait\Voter\VoterAbstract;
+use Vivait\Voter\Voter\VoterAbstract;
 
 class OrVoter extends VoterAbstract {
     public function result($entity) {

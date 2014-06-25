@@ -1,6 +1,6 @@
 <?php
 
-namespace Vivait\Voter;
+namespace Vivait\Voter\Voter;
 
 use Vivait\Voter\Model\ConditionInterface;
 use Vivait\Voter\Model\VoterInterface;
@@ -8,7 +8,7 @@ use Vivait\Voter\Model\VoterInterface;
 abstract class VoterAbstract implements VoterInterface {
 
     /**
-     * @var \SplObjectStorage|\Vivait\Inspector\Model\\Vivait\Voter\Model\ConditionInterface[]
+     * @var \SplObjectStorage|\Vivait\Voter\Model\\Vivait\Voter\Model\ConditionInterface[]
      */
     protected $conditions;
 
@@ -32,10 +32,10 @@ abstract class VoterAbstract implements VoterInterface {
     }
 
     /**
-     * @param \Vivait\Inspector\Model\\Vivait\Voter\Model\ConditionInterface $condition
+     * @param ConditionInterface $condition
      * @return $this
      */
-    public function addCondition(Model\ConditionInterface $condition)
+    public function addCondition(ConditionInterface $condition)
     {
         $this->conditions->attach($condition, $condition->requires());
 
@@ -43,7 +43,7 @@ abstract class VoterAbstract implements VoterInterface {
     }
 
     /**
-     * @return \SplObjectStorage|\Vivait\Inspector\Model\ConditionInterface[]
+     * @return \SplObjectStorage|\Vivait\Voter\Model\ConditionInterface[]
      */
     public function getConditions()
     {
@@ -51,7 +51,7 @@ abstract class VoterAbstract implements VoterInterface {
     }
 
     /**
-     * @param \Vivait\Inspector\Model\\Vivait\Voter\Model\ConditionInterface $condition
+     * @param \Vivait\Voter\Model\\Vivait\Voter\Model\ConditionInterface $condition
      * @return $this
      */
     public function removeCondition(ConditionInterface $condition)

@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\Vivait\Voter;
+namespace spec\Vivait\Voter\Voter;
 
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
-use Vivait\Inspector\Model\ActionInterface;
-use Vivait\Voter\AndVoter;
+use Vivait\Voter\Model\ActionInterface;
+use Vivait\Voter\Voter\AndVoter;
 use Vivait\Voter\Model\ConditionInterface;
 use Vivait\Voter\Model\VoterInterface;
 
