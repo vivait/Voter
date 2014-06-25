@@ -11,4 +11,4 @@ tools:
     custom_commands:
         -
             scope: file
-            command: vendor/phpspec/phpspec/bin/phpspec run %pathname% -f scrutinizer
+            command: vendor/phpspec/phpspec/bin/phpspec run %pathname% -f scrutinizer --no-code-generation
