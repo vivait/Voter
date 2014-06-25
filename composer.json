@@ -13,8 +13,9 @@
 		"php": ">=5.3"
 	},
 	"require-dev": {
-		"phpspec/phpspec": "*"
-	},
+		"phpspec/phpspec": "*",
+        "vivait/scrutinizer-formatter": "dev-master"
+    },
 	"autoload": {
         "psr-0": {
             "Vivait\\Voter\\": "src/"

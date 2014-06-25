@@ -24,7 +24,7 @@ class ActionDispatcherSpec extends ObjectBehavior
         $this->addAction($action1);
         $this->addAction($action2);
 
-        $this->getActions()->shouldHaveCount(2);
+        $this->getActions()->shouldHaveCount(20);
 
         $this->removeAction($action1);
         $this->getActions()->shouldHaveCount(1);
