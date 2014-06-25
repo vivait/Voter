@@ -14,7 +14,7 @@
 	},
 	"require-dev": {
 		"phpspec/phpspec": "*",
-        "vivait/scrutinizer-formatter": "dev-master"
+        "vivait/scrutinizer-formatter": "*"
     },
 	"autoload": {
         "psr-0": {
