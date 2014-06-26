@@ -51,7 +51,7 @@ abstract class VoterAbstract implements VoterInterface {
     }
 
     /**
-     * @param \Vivait\Voter\Model\\Vivait\Voter\Model\ConditionInterface $condition
+     * @param ConditionInterface $condition
      * @return $this
      */
     public function removeCondition(ConditionInterface $condition)
