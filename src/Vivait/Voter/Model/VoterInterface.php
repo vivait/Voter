@@ -3,11 +3,11 @@
 namespace Vivait\Voter\Model;
 
 use Vivait\Voter\Model\ConditionInterface;
-use Vivait\Voter\Voter\VoterAbstract;
 
 interface VoterInterface {
     /**
      * @param array $conditions
+     * @return void
      */
     public function __construct(array $conditions = array());
 
@@ -30,7 +30,7 @@ interface VoterInterface {
     public function addConditions(array $conditions);
 
     /**
-     * @param \Vivait\Voter\Voter\ConditionInterface $condition
+     * @param ConditionInterface $condition
      * @return $this
      */
     public function addCondition(\Vivait\Voter\Model\ConditionInterface $condition);
@@ -41,7 +41,7 @@ interface VoterInterface {
     public function getConditions();
 
     /**
-     * @param \Vivait\Voter\Voter\ConditionInterface $condition
+     * @param ConditionInterface $condition
      * @return $this
      */
     public function removeCondition(\Vivait\Voter\Model\ConditionInterface $condition);
