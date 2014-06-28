@@ -8,6 +8,8 @@
 			"email": "lewis@vivait.co.uk"
 		}
 	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
 	"require": {
 		"php": ">=5.3"
 	},
