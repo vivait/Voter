@@ -12,12 +12,12 @@
 		"php": ">=5.3"
 	},
 	"require-dev": {
-		"phpspec/phpspec": "dev-master",
-        "vivait/scrutinizer-formatter": "dev-master"
-    },
+		"phpspec/phpspec": "~2.0",
+	        "vivait/scrutinizer-formatter": "~1.0"
+    	},
 	"autoload": {
-        "psr-0": {
-            "Vivait\\Voter\\": "src/"
-        }
+        	"psr-0": {
+            		"Vivait\\Voter\\": "src/"
+	        }
 	}
 }
