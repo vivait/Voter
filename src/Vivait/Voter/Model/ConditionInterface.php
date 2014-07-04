@@ -9,8 +9,13 @@ interface ConditionInterface {
     public function requires();
 
     /**
-     * @param mixed $entity
+     * @param mixed $entities
      * @return boolean
      */
-    public function result($entity);
+    public function result($entities);
+
+    /**
+     * @return string
+     */
+    public function __toString();
 }

@@ -2,6 +2,8 @@
 
 namespace Vivait\Voter\Dispatcher;
 
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Vivait\Voter\Model\ActionInterface;
 use Vivait\Voter\Model\VoterInterface;
 
@@ -17,17 +19,31 @@ class ActionDispatcher
      */
     private $actions;
 
-    public function __construct(VoterInterface $voter, array $actions = array())
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
+
+    public function __construct(VoterInterface $voter, array $actions = array(), LoggerInterface $logger = null)
     {
         $this->voter   = $voter;
         $this->actions = new \SplObjectStorage();
 
         $this->addActions($actions);
+
+        if (!$logger) {
+            $logger = new NullLogger();
+        }
+
+        $this->logger = $logger;
     }
 
     public function perform($entity)
     {
-        if ($this->voter->result($entity)) {
+        $result = $this->voter->result($entity);
+        $this->logger->debug(sprintf('Voter "%s" returned result: %s', get_class($this->voter), $result ? 'true' : 'false'));
+
+        if ($result) {
             $this->performActions($entity);
         }
     }
@@ -82,7 +98,11 @@ class ActionDispatcher
     private function performActions($entity)
     {
         foreach ($this->actions as $action) {
-            if ($action->perform($entity) === false) {
+            $result = $action->perform($entity);
+
+            $this->logger->info(sprintf('Performing action "%s" with result: %s', get_class($action), $result ? 'true' : 'false'));
+
+            if ($result === false) {
                 return false;
             }
         }
@@ -107,6 +127,27 @@ class ActionDispatcher
     public function setVoter($voter)
     {
         $this->voter = $voter;
+
+        return $this;
+    }
+
+    /**
+     * Gets logger
+     * @return LoggerInterface
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
+    /**
+     * Sets logger
+     * @param LoggerInterface $logger
+     * @return $this
+     */
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
 
         return $this;
     }

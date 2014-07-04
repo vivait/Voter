@@ -2,20 +2,33 @@
 
 namespace Vivait\Voter\Voter;
 
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Vivait\Voter\Model\ConditionInterface;
 use Vivait\Voter\Model\VoterInterface;
 
 abstract class VoterAbstract implements VoterInterface {
 
     /**
-     * @var \SplObjectStorage|\Vivait\Voter\Model\\Vivait\Voter\Model\ConditionInterface[]
+     * @var \SplObjectStorage|\Vivait\Voter\Model\ConditionInterface[]
      */
     protected $conditions;
 
-    public function __construct(array $conditions = array())
+    /**
+     * @var LoggerInterface
+     */
+    protected $logger;
+
+    public function __construct(array $conditions = array(), LoggerInterface $logger = null)
     {
         $this->conditions = new \SplObjectStorage();
         $this->addConditions($conditions);
+
+        if (!$logger) {
+            $logger = new NullLogger();
+        }
+
+        $this->logger = $logger;
     }
 
     /**

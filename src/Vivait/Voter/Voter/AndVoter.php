@@ -2,14 +2,15 @@
 
 namespace Vivait\Voter\Voter;
 
-use Vivait\Voter\Voter\VoterAbstract;
-
 class AndVoter extends VoterAbstract
 {
     public function result($entity)
     {
         foreach ($this->conditions as $condition) {
-            if ($condition->result($entity) === false) {
+            $result = $condition->result($entity);
+            $this->logger->debug(sprintf('Condition "%s" returned result: %s', (string)$condition, $result ? 'true' : 'false'));
+
+            if ($result == false) {
                 return false;
             }
         }
