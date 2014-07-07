@@ -24,7 +24,7 @@ class OrVoter extends VoterAbstract {
         }
 
         foreach ($this->conditions as $condition) {
-            if (!array_diff($entities, (array)$condition->requires())) {
+            if (!array_diff((array)$condition->requires(), $entities)) {
                 return true;
             }
         }
