@@ -5,9 +5,10 @@ namespace Vivait\Voter\Dispatcher;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Vivait\Voter\Model\ActionInterface;
+use Vivait\Voter\Model\EntityEvent;
 use Vivait\Voter\Model\VoterInterface;
 
-class ActionDispatcher
+class ActionDispatcher implements ActionDispatcherInterface
 {
     /**
      * @var VoterInterface
@@ -24,9 +25,12 @@ class ActionDispatcher
      */
     private $logger;
 
+    /**
+     * @var string
+     */
     private $name;
 
-    public function __construct($name, VoterInterface $voter, array $actions = array(), LoggerInterface $logger = null)
+    public function __construct($name, VoterInterface $voter, array $actions = [], LoggerInterface $logger = null)
     {
         $this->voter = $voter;
         $this->actions = new \SplObjectStorage();
@@ -38,6 +42,12 @@ class ActionDispatcher
         }
 
         $this->logger = $logger;
+    }
+
+    public function performFromEvent(EntityEvent $event, $eventName) {
+        $this->logger->info(sprintf('Calling inspection "%s" for event "%s"', $this->name, $eventName));
+
+        $this->perform($event->getEntities());
     }
 
     public function perform($entity)
@@ -170,6 +180,27 @@ class ActionDispatcher
     public function setLogger($logger)
     {
         $this->logger = $logger;
+
+        return $this;
+    }
+
+    /**
+     * Gets name
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Sets name
+     * @param string $name
+     * @return $this
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
 
         return $this;
     }
