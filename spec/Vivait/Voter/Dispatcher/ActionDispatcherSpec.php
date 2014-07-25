@@ -15,7 +15,7 @@ class ActionDispatcherSpec extends ObjectBehavior
 {
     function let(\Vivait\Voter\Model\VoterInterface $voter)
     {
-        $this->beConstructedWith($voter);
+        $this->beConstructedWith('An action', $voter);
     }
 
     function it_can_store_multiple_actions(
@@ -46,7 +46,7 @@ class ActionDispatcherSpec extends ObjectBehavior
       \Vivait\Voter\Model\ActionInterface $action2,
       \Vivait\Voter\Model\ActionInterface $action3
     ) {
-        $this->beConstructedWith($voter, [$action1, $action2]);
+        $this->beConstructedWith('Can accept actions in the construct', $voter, [$action1, $action2]);
         $this->addAction($action3);
 
         $this->getActions()->shouldHaveCount(3);
@@ -58,13 +58,14 @@ class ActionDispatcherSpec extends ObjectBehavior
 
         $action1->requires()->willReturn('stdClass')->shouldBeCalled();
 
-        $action1->perform($entity)->willReturn(true)->shouldBeCalled();
+        $action1->perform([$entity])->willReturn(true)->shouldBeCalled();
 
         $this->addAction($action1);
 
-        $voter->result($entity)->willReturn(true)->shouldBeCalled();
+        $voter->supports(['stdClass'])->willReturn(true)->shouldBeCalled();
+        $voter->result([$entity])->willReturn(true)->shouldBeCalled();
 
-        $this->perform($entity);
+        $this->perform([$entity]);
     }
 
     public function it_can_halt_future_actions_if_one_returns_false(
@@ -77,13 +78,14 @@ class ActionDispatcherSpec extends ObjectBehavior
         $action1->requires()->willReturn('stdClass')->shouldBeCalled();
         $action2->requires()->willReturn('stdClass')->shouldBeCalled();
 
-        $action1->perform($entity)->willReturn(false)->shouldBeCalled();
-        $action2->perform($entity)->shouldNotBeCalled();
+        $action1->perform([$entity])->willReturn(false)->shouldBeCalled();
+        $action2->perform([$entity])->shouldNotBeCalled();
 
         $this->addActions([$action1, $action2]);
 
-        $voter->result($entity)->willReturn(true)->shouldBeCalled();
+        $voter->supports(['stdClass'])->willReturn(true)->shouldBeCalled();
+        $voter->result([$entity])->willReturn(true)->shouldBeCalled();
 
-        $this->perform($entity);
+        $this->perform([$entity]);
     }
 }
