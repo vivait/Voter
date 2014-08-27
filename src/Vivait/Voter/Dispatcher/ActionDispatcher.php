@@ -4,6 +4,7 @@ namespace Vivait\Voter\Dispatcher;
 
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use Symfony\Component\EventDispatcher\Event;
 use Vivait\Voter\Model\ActionInterface;
 use Vivait\Voter\Model\EntityEvent;
 use Vivait\Voter\Model\VoterInterface;
@@ -32,6 +33,7 @@ class ActionDispatcher implements ActionDispatcherInterface
 
     public function __construct($name, VoterInterface $voter, array $actions = [], LoggerInterface $logger = null)
     {
+        $this->name = $name;
         $this->voter = $voter;
         $this->actions = new \SplObjectStorage();
 
@@ -44,10 +46,15 @@ class ActionDispatcher implements ActionDispatcherInterface
         $this->logger = $logger;
     }
 
-    public function performFromEvent(EntityEvent $event, $eventName) {
+    public function performFromEvent(Event $event, $eventName) {
         $this->logger->info(sprintf('Calling inspection "%s" for event "%s"', $this->name, $eventName));
 
-        $this->perform($event->getEntities());
+        if ($event instanceOf EntityEvent) {
+            $this->perform($event->getEntities());
+        }
+        else {
+            $this->perform([]);
+        }
     }
 
     public function perform($entity)

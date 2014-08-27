@@ -41,7 +41,7 @@ class LazyActionDispatcher implements ActionDispatcherInterface
         $actionDispatcher->perform($entity);
     }
 
-    public function performFromEvent(EntityEvent $event, $eventName)
+    public function performFromEvent(Event $event, $eventName)
     {
         $actionDispatcher = $this->actionDispatcherFactory->create($this->inspectionId);
         $actionDispatcher->performFromEvent($event, $eventName);
