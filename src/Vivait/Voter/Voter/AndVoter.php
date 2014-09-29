@@ -2,8 +2,6 @@
 
 namespace Vivait\Voter\Voter;
 
-use Vivait\Voter\Model\ConditionInterface;
-
 class AndVoter extends VoterAbstract
 {
     public function result($entity)
@@ -57,4 +55,4 @@ class AndVoter extends VoterAbstract
 
         return $requirements;
     }
-} 
+}

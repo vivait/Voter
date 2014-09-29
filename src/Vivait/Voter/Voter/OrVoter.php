@@ -31,4 +31,4 @@ class OrVoter extends VoterAbstract {
 
         return false;
     }
-} 
+}

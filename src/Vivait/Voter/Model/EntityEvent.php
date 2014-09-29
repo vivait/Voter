@@ -18,4 +18,4 @@ interface EntityEvent {
      * @return array
      */
     public static function supportsEvents();
-} 
+}
