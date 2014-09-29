@@ -74,5 +74,4 @@ abstract class VoterAbstract implements VoterInterface {
         return $this;
     }
 
-
 }

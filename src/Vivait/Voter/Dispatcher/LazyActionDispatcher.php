@@ -2,14 +2,8 @@
 
 namespace Vivait\Voter\Dispatcher;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 use Symfony\Component\EventDispatcher\Event;
-use Vivait\InspectorBundle\Entity\Inspection;
 use Vivait\InspectorBundle\Model\ActionDispatcherFactory;
-use Vivait\Voter\Model\ActionInterface;
-use Vivait\Voter\Model\EntityEvent;
-use Vivait\Voter\Model\VoterInterface;
 
 class LazyActionDispatcher implements ActionDispatcherInterface
 {
